@@ -1,0 +1,36 @@
+<script src="http://e00-elmundo.uecdn.es/assets/v7/js/jquery.2.1.4.js"></script>
+<script>
+    jQuery(window).scroll(function() {    
+        fixed_publi();
+    });
+
+    function fixed_publi() {
+
+        var banners = ["#div-gpt-ad-nauta360_p_r", "#div-gpt-ad-nauta360_p_rb"];
+        
+        for (var i = 0; i < banners.length; i++) {
+            var banner = banners[i];
+            var top = jQuery(banners[i]).parents('div').offset().top;
+            var bottom = top + jQuery(banners[i]).parents('div').outerHeight() - jQuery(banners[i]).outerHeight();
+            fixed(top, bottom, banner);
+        }
+    }
+
+    function fixed(top, bottom, banner) {
+
+        var right = jQuery('.col.col-12').offset().left;
+
+        if (jQuery(window).scrollTop() >= top &&  jQuery(window).scrollTop() < bottom){ 
+            jQuery(banner).addClass('fixed').css('right', right);
+        }else {
+            jQuery(banner).removeClass('fixed').css('right', 0);
+        }
+
+        if (jQuery(window).scrollTop() > bottom){ 
+            jQuery(banner).addClass('stop');
+        }else{ 
+            jQuery(banner).removeClass('stop');
+        }
+    }
+
+</script>
